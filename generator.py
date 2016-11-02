@@ -97,7 +97,7 @@ def generate():
 			while shifts[index] == "BLANK":
 				index += 1
 			while index != len(shifts) and shifts[index] == "FILL_IN":
-				if time_code + index > 23:
+				if time_code + index < 0 or time_code + index > 23:
 					shifts[index] = "NONE_AVAILABLE"
 					index += 1
 					continue
@@ -194,8 +194,12 @@ def generate():
 			table_file.write(",".join(entry))
 			table_file.write("\n")
 		table_file.close()
+		"""Prints the table into the terminal."""
+		print("\nAssignments:\n")
+		for entry in table:
+			print(" -- " + entry[0] + " for " + entry[1] + " at " + entry[2] + " - " + entry[3] + ".\n")
 
 	dir_name = writeFile()
 	writeTable(dir_name)
 
-	print("\nSchedule generated successfully.\n")
+	print("Schedule generated successfully.\n")

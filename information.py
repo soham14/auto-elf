@@ -25,6 +25,7 @@ def info():
 		member = person[0]
 		print("\n* Name: " + member.getName() + "\n")
 		print("* Email: " + member.getEmail() + "\n")
+		print("* Events Attended: " + str(member.getEventsAttended()) + "\n")
 		print("* Availabilities:\n")
 		schedule = member.getSchedule()
 		valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]

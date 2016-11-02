@@ -50,7 +50,7 @@ def find():
 			  - mem_time_code
 	"""Creates and prints the list of members available for the time slot."""
 	available_people = []
-	if time_code < 24:
+	if time_code > -1 and time_code < 24:
 		available_people = list(filter(lambda person: person.getSchedule()[day][time_code], people[:]))
 	if len(available_people) == 0:
 		print("\nThere are no members available on " + day + " at " + time + ".")
