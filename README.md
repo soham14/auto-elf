@@ -1,8 +1,6 @@
 # auto-elf
 
-## Overview
-
-This program is meant to automate the scheduling of members of the Berkeley Forum to event shifts. It was developed with Python 3.5.2 and its functionalities include generating event logistics forms (ELFs), listing availabilities for a given shift, and displaying availability information for individual members.
+This program is meant to automate the scheduling of members of the Berkeley Forum to event shifts by aggregating member schedules and using sampling to determine optimal shift assignments. The auto-elf program was developed with Python and its functionalities include generating event logistics forms (ELFs), listing availabilities for a given shift, and displaying availability information for individual members. For example outputs, please see `ELFs/Claude Shannon at the Berkeley Forum/` and `ELFs/John McCarthy at the Berkeley Forum/`.
 
 ## Set Up
 
@@ -25,11 +23,13 @@ This option takes into account all schedules in the `schedules` folder, except f
 * Social Media
 * Utility
 
-Note that Cage Oversight and Cage Transport are split between pre-event and post-event transport. The ELF can be found in the `ELFs/[Name of Event]` folder in CSV format, in addition to a CSV file that contains the names, positions, shift times, and emails for all members assigned to the given ELF. If opening the ELF CSV file in Microsoft Excel, it is recommended that the formatting for the ELF file is:
+Note that Cage Oversight and Cage Transport are split between pre-event and post-event transport. The ELF can be found at `ELFs/[Name of Event]/ELF.csv` folder in CSV format. The same folder contains a CSV file titled `table.csv` that records the names, positions, shift times, and emails for all members assigned to the given ELF. Finally, the folder contains a CSV file titled `query.csv` that records information about the query that generated the ELF. If opening the ELF CSV file in Microsoft Excel, the recommended formatting for the ELF file is:
 
 * Set all column widths to size 16
-* Conditionally format all cells that contain the text "NONE_AVAILABLE" to "Light Red Fill with Dark Red Text"
 * Conditionally format all cells that contain the text "BLANK" to "Custom Format... -> Fill -> Black"
+* Conditionally format all cells that contain the text "NONE_AVAILABLE" to "Light Red Fill with Dark Red Text"
+
+The program also asks for a sample size in order to find the optimal schedule. The recommended sample size is 10000 schedules. Cursory statistics will be output by the program, including the mean, median, maximum, minimum, standard deviation, and variance where appropriate. The program selects the schedule that matches the median number of members if the entire sample size is not excluded due to all generated sample schedules containing shifts that are not occupiable due to the other shifts being assigned by the program or other factors. If it is not possible to generate a schedule without unoccupiable shifts, the schedule with the least unoccupiable shifts will be chosen.
 
 ### Find availabilities for a shift slot
 
