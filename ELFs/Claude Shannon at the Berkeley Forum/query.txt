@@ -1,0 +1,63 @@
+# Query Information
+
+## Event Information
+
+Title: Claude Shannon at the Berkeley Forum
+Day: Monday
+Time: 5:00 PM
+Members Excluded: Alan Kay, Ada Lovelace
+
+## Sampling Information
+
+Schedule Sample Size: 10000
+
+3842 samples had inoccupiable shifts and were excluded.
+
+Statistics for number of members in 6158 non-excluded sample ELFs:
+
+Minimum: 21
+Maximum: 28
+Median: 26.0
+Mean: 25.508606690483923
+Mode: 26
+Standard Deviation: 1.386320546984165
+Variance: 1.9218846589904746
+
+21 = |
+22 = |
+23 = |***
+24 = |*********
+25 = |**************
+26 = |****************
+27 = |***********
+28 = |***
+
+## Assignments
+
+ -- Alan Turing for Cage Transport at 6:00 PM - 7:00 PM.
+ -- Anita Borg for Registration Usher at 4:30 PM - 5:30 PM.
+ -- Annie Easley for Utility at 6:00 PM - 6:30 PM.
+ -- Barbara Liskov for Tech Oversight/Set Up at 4:30 PM - 5:30 PM.
+ -- Brian Kernighan for Cage Oversight at 3:30 PM - 4:00 PM.
+ -- Daphne Koller for Photographer at 4:30 PM - 5:30 PM.
+ -- Edgar Codd for Social Media at 5:00 PM - 6:00 PM.
+ -- Edsger Dijkstra for Registration Check In at 4:30 PM - 5:30 PM.
+ -- Grace Hopper for Tech Oversight/Set Up at 6:00 PM - 6:30 PM.
+ -- James Gosling for Cage Transport at 3:30 PM - 4:00 PM.
+ -- Jean Sammet for Cage Oversight at 6:00 PM - 6:30 PM.
+ -- Jeannette Wing for Cage Transport at 3:30 PM - 4:00 PM.
+ -- Jennifer Widom for Photographer at 5:30 PM - 6:00 PM.
+ -- John Backus for Stage Set Up at 4:00 PM - 4:30 PM.
+ -- John von Neumann for Stage Set Up at 4:00 PM - 5:00 PM.
+ -- Larry Page for Stage Set Up at 4:30 PM - 5:00 PM.
+ -- Marissa Mayer for Registration Set Up at 4:00 PM - 4:30 PM.
+ -- Radia Perlman for Tech Oversight/Set Up at 4:00 PM - 4:30 PM.
+ -- Rosalind Picard for Photographer at 6:00 PM - 6:30 PM.
+ -- Sophie Wilson for Registration Check In at 4:30 PM - 5:30 PM.
+ -- Stephen Cook for Cage Transport at 6:00 PM - 7:00 PM.
+ -- Steve Wozniak for Tech Oversight/Set Up at 5:30 PM - 6:00 PM.
+ -- Tim Berners-Lee for Utility at 5:00 PM - 6:00 PM.
+ -- Wang Xiaoyun for Cage Oversight at 6:30 PM - 7:00 PM.
+ -- Winifred Asprey for Utility at 4:30 PM - 5:00 PM.
+
+Schedule generated successfully. The ELF's location is `ELFs/Claude Shannon at the Berkeley Forum/ELF.csv`.

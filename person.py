@@ -1,3 +1,5 @@
+"""Defines members' state and behavior."""
+
 class Person:
 	name = "Name Not Initialized"
 	email = "Email Not Initialized"

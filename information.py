@@ -1,17 +1,9 @@
+"""Returns information on file for a member."""
+
 from load import loadMeta, loadPersons
+from state import mem_time_code
 
 def info():
-	"""
-	The start time of all member schedules: 9:00 AM. The following four values can be adjusted
-	if a different start time is filled out in the schedules given by members.
-	"""
-	mem_start_hour = 9
-	mem_start_min = 0
-	mem_start_meridian = "AM"
-	mem_time_code = ((0 if mem_start_hour == 12 else mem_start_hour) \
-				  + (12 if mem_start_meridian == "PM" else 0)) * 2 \
-				  + (1 if mem_start_min == 30 else 0)
-
 	name = input("\nWhat is the member's name?\n>>> ")
 	meta_information = loadMeta()
 	people = loadPersons(meta_information)

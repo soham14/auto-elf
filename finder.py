@@ -1,4 +1,7 @@
+"""Finds members available given a day and time."""
+
 from load import loadMeta, loadPersons
+from state import mem_time_code
 
 def find():
 	meta_information = loadMeta()
@@ -33,16 +36,6 @@ def find():
 			continue
 		hour = int(time_check[0])
 		minute = int(time_check[1])
-	"""
-	The start time of all member schedules: 9:00 AM. The following four values can be adjusted
-	if a different start time is filled out in the schedules given by members.
-	"""
-	mem_start_hour = 9
-	mem_start_min = 0
-	mem_start_meridian = "AM"
-	mem_time_code = ((0 if mem_start_hour == 12 else mem_start_hour) \
-				  + (12 if mem_start_meridian == "PM" else 0)) * 2 \
-				  + (1 if mem_start_min == 30 else 0)
 	"""The adjusted time code is calculated to properly index into member availabilities."""
 	time_code = ((0 if hour == 12 else hour) \
 			  + (12 if meridian == "PM" else 0)) * 2 \

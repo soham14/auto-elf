@@ -1,3 +1,5 @@
+"""Includes methods to load meta-information and information about members' schedules."""
+
 import csv
 from person import Person
 

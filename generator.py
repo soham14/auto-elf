@@ -1,7 +1,11 @@
+"""Generates an optimal event logistics form."""
+
+from state import mem_time_code, default_schedule
 from schedule import Schedule
 from load import loadMeta, loadPersons
 from random import randint
 from os import path, mkdir
+from copy import deepcopy
 import statistics as stat
 import sys
 
@@ -21,17 +25,6 @@ def generate():
 	while not charCheck(title):
 		print("\nPlease enter a title without the following characters: " + ", ".join(unusable_chars) + ".\n")
 		title = input("What is the title of the event? (format: Alan Turing at the Berkeley Forum)\n>>> " )
-
-	"""
-	The start time of all member schedules: 9:00 AM. The following four values can be adjusted
-	if a different start time is filled out in the schedules given by members.
-	"""
-	mem_start_hour = 9
-	mem_start_min = 0
-	mem_start_meridian = "AM"
-	mem_time_code = ((0 if mem_start_hour == 12 else mem_start_hour) \
-				  + (12 if mem_start_meridian == "PM" else 0)) * 2 \
-				  + (1 if mem_start_min == 30 else 0)
 
 	day = input("\nWhat is the day of the event? (format: Monday, Tuesday, etc.)\n>>> ")
 	valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -86,27 +79,13 @@ def generate():
 		for name in excluded_names:
 			excluded.append(name.strip())
 
+	text_out = ["# Query Information\n\n", "## Event Information\n\n", "Title: " + title + "\n", "Day: " + day + "\n", "Time: " + time + "\n", \
+				"Members Excluded: " + (", ".join(excluded) if len(excluded) != 0 else "None") + "\n\n"]
+
 	def createELF():
 		from schedule import Schedule
 		new_elf = Schedule(title, time_code)
-		created_schedule = [
-		["Cage Oversight", ["FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Cage Transport", ["FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Cage Transport", ["FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Stage Set Up", ["BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Stage Set Up", ["BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Registration Set Up", ["BLANK", "FILL_IN", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"]],
-		["Registration Check In", ["BLANK", "BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK", "BLANK"]],
-		["Registration Check In", ["BLANK", "BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK", "BLANK"]],
-		["Registration Usher", ["BLANK", "BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK", "BLANK"]],
-		["Tech Oversight/Set Up", ["BLANK", "FILL_IN", "FILL_IN", "FILL_IN", "FILL_IN", "FILL_IN", "BLANK"]],
-		["Photographer", ["BLANK", "BLANK", "FILL_IN", "FILL_IN", "FILL_IN", "FILL_IN", "BLANK"]],
-		["Social Media", ["BLANK", "BLANK", "BLANK", "FILL_IN", "FILL_IN", "BLANK", "BLANK"]],
-		["Utility", ["BLANK", "BLANK", "FILL_IN", "FILL_IN", "FILL_IN", "FILL_IN", "BLANK"]],
-		["Cage Oversight", ["BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "FILL_IN", "FILL_IN"]],
-		["Cage Transport", ["BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "FILL_IN", "FILL_IN"]],
-		["Cage Transport", ["BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "FILL_IN", "FILL_IN"]]
-		]
+		created_schedule = deepcopy(default_schedule)
 		slots_completed = []
 		people_assigned = []
 		slot = randint(0, len(created_schedule)-1)
@@ -145,19 +124,23 @@ def generate():
 		new_elf.setWrittenSchedule(created_schedule)
 		return new_elf
 
-	def findOptimalELF(iterations=1000):
+	def findOptimalELF(iterations=10000):
+		nonlocal text_out
 		sample_elfs = {}
 		excluded_sample_elfs = {}
 		excluded_sample_count = 0
 		print()
 		curr_progress = 0
-		sys.stdout.write("Progress: [{0}{1}]\r".format("#" * 0, " " * 9))
+		sys.stdout.write("Generating " + str(iterations) + " sample schedules: [{0}{1}] 0.0%\r".format("#" * 0, " " * 9))
 		sys.stdout.flush()
 		for i in range(iterations):
-			if curr_progress != int(i / (iterations / 10)):
-				sys.stdout.write("Progress: [{0}{1}]\r".format("#" * int(i / (iterations / 10)), " " * (9 - int(i / (iterations / 10)))))
+			if curr_progress != int(i / (iterations / 1000)):
+				sys.stdout.write("Generating " + str(iterations) + " sample schedules: [{0}{1}] {2}\r".format("#" * int(i / (iterations / 10)), " " * (10 - int(i / (iterations / 10))), str(100 * i/iterations) + "%"))
 				sys.stdout.flush()
-				curr_progress = int(i / (iterations / 10))
+				curr_progress = int(i / (iterations / 1000))
+			if i == iterations-1:
+				sys.stdout.write("Generating " + str(iterations) + " sample schedules: [{0}{1}] {2}\r".format("##########", "", "100.0%"))
+				sys.stdout.flush()
 			sample_elf = createELF()
 			sample_people = set([])
 			num_unoccupied_shifts = 0
@@ -186,9 +169,8 @@ def generate():
 		for key in excluded_sample_elfs.keys():
 			for values in excluded_sample_elfs[key]:
 				excluded_key_list.append(key)
-		global outer_excluded_sample_count
-		outer_excluded_sample_count = excluded_sample_count
 		print("\n\n" + str(excluded_sample_count) + " samples had inoccupiable shifts and were excluded.")
+		text_out.append("\n" + str(excluded_sample_count) + " samples had inoccupiable shifts and were excluded.\n")
 		if len(sample_elfs.keys()) != 0:
 			print("\nStatistics for number of members in " + str(iterations - excluded_sample_count) + " non-excluded sample ELFs:\n")
 			print("* Minimum: " + str(min(key_list)))
@@ -196,14 +178,20 @@ def generate():
 			print("* Median: " + str(stat.median(key_list)))
 			print("* Mean: " + str(stat.mean(key_list)))
 			print("* Mode: " + str(stat.mode(key_list)))
+			text_out.append("\nStatistics for number of members in " + str(iterations - excluded_sample_count) + " non-excluded sample ELFs:\n\n")
+			text_out += ["Minimum: " + str(min(key_list)) + "\n", "Maximum: " + str(max(key_list)) + "\n", "Median: " + str(stat.median(key_list)) + "\n", \
+						 "Mean: " + str(stat.mean(key_list)) + "\n", "Mode: " + str(stat.mode(key_list)) + "\n"]
 			if len(sample_elfs.keys()) > 1:
 				print("* Standard Deviation: " + str(stat.stdev(key_list)))
 				print("* Variance: " + str(stat.variance(key_list)) + "\n")
+				text_out += ["Standard Deviation: " + str(stat.stdev(key_list)) + "\n", "Variance: " + str(stat.variance(key_list)) + "\n\n"]
 			else:
 				print()
+				text_out.append("\n\n")
 			for key in sorted(sample_elfs.keys()):
 				stars = int(len(list(filter(lambda k: k == key, key_list))) / (iterations / 100))
 				print(str(key) + " = |" + stars * "*")
+				text_out.append(str(key) + " = |" + stars * "*" + "\n")
 		else:
 			print("\nStatistics for number of unoccupied shifts in " + str(excluded_sample_count) + " excluded sample ELFs:\n")
 			print("* Minimum: " + str(min(excluded_key_list)))
@@ -211,14 +199,20 @@ def generate():
 			print("* Median: " + str(stat.median(excluded_key_list)))
 			print("* Mean: " + str(stat.mean(excluded_key_list)))
 			print("* Mode: " + str(stat.mode(excluded_key_list)))
+			text_out.append("\nStatistics for number of unoccupied shifts in " + str(excluded_sample_count) + " excluded sample ELFs:\n\n")
+			text_out += ["Minimum: " + str(min(excluded_key_list)) + "\n", "Maximum: " + str(max(excluded_key_list)) + "\n", "Median: " + str(stat.median(excluded_key_list)) + "\n", \
+						 "Mean: " + str(stat.mean(excluded_key_list)) + "\n", "Mode: " + str(stat.mode(excluded_key_list)) + "\n"]
 			if len(excluded_sample_elfs.keys()) > 1:
 				print("* Standard Deviation: " + str(stat.stdev(excluded_key_list)))
 				print("* Variance: " + str(stat.variance(excluded_key_list)) + "\n")
+				text_out += ["Standard Deviation: " + str(stat.stdev(excluded_key_list)) + "\n", "Variance: " + str(stat.variance(excluded_key_list)) + "\n\n"]
 			else:
 				print()
+				text_out.append("\n\n")
 			for key in sorted(excluded_sample_elfs.keys()):
 				stars = int(len(list(filter(lambda k: k == key, excluded_key_list))) / (iterations / 10))
 				print(str(key) + " = |" + stars * "*")
+				text_out.append(str(key) + " = |" + stars * "*" + "\n")
 		if len(sample_elfs.keys()) != 0:
 			if int(stat.median(sample_elfs.keys())) in sample_elfs.keys() and int(stat.median(sample_elfs.keys())) == stat.median(sample_elfs.keys()):
 				elf.setWrittenSchedule(sample_elfs[int(stat.median(sample_elfs.keys()))][randint(0,len(sample_elfs[int(stat.median(sample_elfs.keys()))])-1)])
@@ -238,7 +232,10 @@ def generate():
 			return elf
 
 
-	iter_input = input("\nHow many sample schedules should be created to find the optimal schedule? (format: 10000)\n>>> ")
+	iter_input = input("\nHow many sample schedules should be created to find the optimal schedule? (recommended: 10000)\n>>> ")
+
+	text_out.append("## Sampling Information\n\n")
+	text_out.append("Schedule Sample Size: " + str(iter_input) + "\n")
 
 	def numCheck(inp):
 		try:
@@ -285,6 +282,7 @@ def generate():
 		return dir_name
 		
 	def writeTable(dir_name):
+		nonlocal text_out
 		names_found = {}
 		name_to_position = {}
 		for slot in elf.getWrittenSchedule():
@@ -323,19 +321,19 @@ def generate():
 			table_file.write("\n")
 		table_file.close()
 		"""Prints the table into the terminal."""
-		print("\nSchedule generated successfully. The ELF's location is ELFs/" + dir_name + "/ELF.csv")
 		print("\nAssignments:\n")
+		text_out.append("\n## Assignments\n\n")
 		for entry in table:
-			print(" -- " + entry[0] + " for " + entry[1] + " at " + entry[2] + " - " + entry[3] + ".\n")
+			print(" -- " + entry[0] + " for " + entry[1] + " at " + entry[2] + " - " + entry[3] + ".")
+			text_out.append(" -- " + entry[0] + " for " + entry[1] + " at " + entry[2] + " - " + entry[3] + ".\n")
+		print("\nSchedule generated successfully. The ELF's location is `ELFs/" + dir_name + "/ELF.csv`.\n")
+		text_out.append("\nSchedule generated successfully. The ELF's location is `ELFs/" + dir_name + "/ELF.csv`.\n")
 
 	def writeQueryInfo():
-		query_file = open("./ELFs/" + dir_name + "/query.csv", "w")
-		query_file.write("Title:," + title + "\n")
-		query_file.write("Day:," + day + "\n")
-		query_file.write("Time:," + time + "\n")
-		query_file.write("Members Excluded:," + ",".join(excluded) + "\n")
-		query_file.write("Sample Size:," + str(iter_input) + "\n")
-		query_file.write("Excluded Samples:," + str(outer_excluded_sample_count) + "\n")
+		query_file = open("./ELFs/" + dir_name + "/query.txt", "w")
+		for line in text_out:
+			query_file.write(line)
+		query_file.close()
 
 	dir_name = writeFile()
 	writeTable(dir_name)
