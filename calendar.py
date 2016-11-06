@@ -146,7 +146,7 @@ def invite():
     datetime_end = end_temp[0] + "T" + end_temp[1] + "-07:00"
     
     event = {
-      "calendarID": "skudtarkar@berkeley.edu",
+      "calendarID": invite[4],
       "location": venue_name + ", Berkeley, CA",
       "summary": "[TBF] " + invite[1] + " -- " + room_number + " " + venue_name,
       "start": {
