@@ -47,7 +47,7 @@ Creates invite slots on members' respective Google calendars for their shifts. T
 * The user needs to enter their client ID and client secret into the first two variables of the calendar.py file.
 * The user needs to install the correct client library using `pip install --upgrade google-api-python-client`.
 
-More information can be found here: https://developers.google.com/google-apps/calendar/quickstart/python.
+More information can be found [here](https://developers.google.com/google-apps/calendar/quickstart/python).
 
 ### Exit
 
