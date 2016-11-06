@@ -17,7 +17,7 @@ while True:
 
 	menu_choice = input("Please enter a number to choose a menu option.\n>>> ")
 
-	while menu_choice not in ["1", "2", "3", "4"]:
+	while menu_choice not in ["1", "2", "3", "4", "5"]:
 		os.system("cls" if os.name == "nt" else "clear")
 		print(start_statement)
 		menu_choice = input("Please enter a number to choose a menu option.\n>>> ")
@@ -46,7 +46,7 @@ while True:
 	elif menu_choice == "4":
 		os.system("cls" if os.name == "nt" else "clear")
 		print("\n* 4 -> Invite members on Google Calendar.")
-		from calendar import invite
+		from external import invite
 		invite()
 		input("Press enter to go back to the menu\n>>> ")
 		os.system("cls" if os.name == "nt" else "clear")

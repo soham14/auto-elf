@@ -85,6 +85,7 @@ def invite():
     print("\nThe folder " + folder_name + " could not be found.\n")
     exit_prompt = input("Would you like to return to the main menu? (format: yes/no)\n>>> ")
     if exit_prompt in ["yes", "y"]:
+      print()
       return
     folder_name = input("\nWhat is the name of the folder that contains the relevant table.csv?\n>>> ")
 
@@ -133,7 +134,7 @@ def invite():
       return
     name_check = input("Are you sure that you want to invite the members above for the given times and shifts? (format: yes/no)\n")
 
-  print("Inviting...\n")
+  print("\nInviting...")
 
   for invite in invitations:
     time_start = invite[2]
@@ -146,7 +147,7 @@ def invite():
     datetime_end = end_temp[0] + "T" + end_temp[1] + "-07:00"
     
     event = {
-      "calendarID": "skudtarkar@berkeley.edu",
+      "calendarID": invite[4],
       "location": venue_name + ", Berkeley, CA",
       "summary": "[TBF] " + invite[1] + " -- " + room_number + " " + venue_name,
       "start": {
