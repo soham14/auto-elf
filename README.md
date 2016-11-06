@@ -41,13 +41,13 @@ This option prints a user's name, email, and time availabilities for every day o
 
 ### Invite members on Google Calendar
 
-Creates invite slots on members' respective Google calendars for their shifts. The event contains information on shift start time, shift end time, assigned position, the venue, and the room number. Every event also has a 15 minute reminder feature. The requirements to run this option are as follows:
+This option creates calendar events on members' respective Google calendars for their shifts by iterating through each row of the `table.csv` file of a given Berkeley Forum event in the `ELFs` folder. Each calendar event contains information on shift start time, shift end time, assigned position, the venue, and the room number. Each calendar event also has a 15 minute reminder feature. The requirements to run this option are as follows:
 
 * The user needs to have a Google developer account with the Calendar API enabled.
 * The user needs to enter their client ID and client secret into the first two variables of the calendar.py file.
 * The user needs to install the correct client library using `pip install --upgrade google-api-python-client`.
 
-More information can be found here: https://developers.google.com/google-apps/calendar/quickstart/python.
+More information can be found [here](https://developers.google.com/google-apps/calendar/quickstart/python).
 
 ### Exit
 
