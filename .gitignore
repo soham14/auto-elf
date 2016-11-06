@@ -3,6 +3,3 @@ __pycache__/
 
 # API Files
 *.dat
-
-# Keys
-test_calendar.py
