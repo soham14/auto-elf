@@ -18,6 +18,9 @@ from oauth2client.client import AccessTokenRefreshError
 from oauth2client.client import OAuth2WebServerFlow
 from os import path
 from datetime import datetime
+from signal import signal, SIGPIPE, SIG_DFL
+
+signal(SIGPIPE,SIG_DFL) 
 
 client_id = "NOT_INITIALIZED"
 client_secret = "NOT_INITIALIZED"
@@ -45,7 +48,7 @@ def invite():
 
   service = build('calendar', 'v3', http=http)
 
-  creator_name = input("What is your name?\n>>> ")
+  creator_name = input("\nWhat is your name?\n>>> ")
 
   while creator_name == "":
     print("\nPlease enter your name.\n")
@@ -141,13 +144,14 @@ def invite():
     time_end = invite[3]
     datetime_start = datetime.strptime(date + " " + time_start, "%m-%d-%Y %I:%M %p")
     start_temp = str(datetime_start).split(" ")
-    datetime_start = start_temp[0] + "T" + start_temp[1] + "-07:00"
+    datetime_start = start_temp[0] + "T" + start_temp[1] + "-08:00"
     datetime_end = datetime.strptime(date + " " + time_end, "%m-%d-%Y %I:%M %p")
     end_temp = str(datetime_end).split(" ")
-    datetime_end = end_temp[0] + "T" + end_temp[1] + "-07:00"
+    datetime_end = end_temp[0] + "T" + end_temp[1] + "-08:00"
     
     event = {
-      "calendarID": invite[4],
+      "calendarID": "primary",
+      "attendees": [{"email": invite[4], "responseStatus": "needsAction"}],
       "location": venue_name + ", Berkeley, CA",
       "summary": "[TBF] " + invite[1] + " -- " + room_number + " " + venue_name,
       "start": {
@@ -176,7 +180,7 @@ def invite():
 
     try:
 
-      request = service.events().insert(calendarId=invite[4], body=event)
+      request = service.events().insert(calendarId="primary", body=event, sendNotifications=True)
       if request != None:
         response = request.execute()
 

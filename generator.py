@@ -1,6 +1,6 @@
 """Generates an optimal event logistics form."""
 
-from state import mem_time_code, default_schedule
+from state import mem_time_code, single_speaker_schedule, multi_speaker_schedule, single_transform, single_inverse, multiple_transform, multiple_inverse
 from schedule import Schedule
 from load import loadMeta, loadPersons
 from random import randint
@@ -25,6 +25,14 @@ def generate():
 	while not charCheck(title):
 		print("\nPlease enter a title without the following characters: " + ", ".join(unusable_chars) + ".\n")
 		title = input("What is the title of the event? (format: Alan Turing at the Berkeley Forum)\n>>> " )
+
+	event_type = input("\nWhat type of event is it? (format: single, multi)\n>>> ")
+
+	while event_type not in ["single", "multi"]:
+		print("\nPlease enter a valid event type.\n")
+		event_type = input("What type of event is it? (format: single, multi)\n>>> ")
+
+	default_schedule = (single_transform if event_type == "single" else multiple_transform)
 
 	day = input("\nWhat is the day of the event? (format: Monday, Tuesday, etc.)\n>>> ")
 	valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -64,7 +72,7 @@ def generate():
 			  - mem_time_code \
 			  - 3
 
-	elf = Schedule(title, time_code)
+	elf = Schedule(title, time_code, event_type)
 	new_schedule = elf.getWrittenSchedule()
 
 	meta_information = loadMeta()
@@ -79,12 +87,21 @@ def generate():
 		for name in excluded_names:
 			excluded.append(name.strip())
 
-	text_out = ["# Query Information\n\n", "## Event Information\n\n", "Title: " + title + "\n", "Day: " + day + "\n", "Time: " + time + "\n", \
-				"Members Excluded: " + (", ".join(excluded) if len(excluded) != 0 else "None") + "\n\n"]
+	excluded_jobs = []
+
+	excluded_jobs_prompt = input("\nAre there any job exclusions? (format: Tech Oversight/Set Up, Photographer, etc.)\n>>> ")
+
+	if excluded_jobs_prompt != "":
+		excluded_jobs = excluded_jobs_prompt.split(",")
+		for i in range(len(excluded_jobs)):
+			excluded_jobs[i] = excluded_jobs[i].strip()
+
+	text_out = ["# Query Information\n\n", "## Event Information\n\n", "Title: " + title + "\n", "Event Type: " + event_type + "\n", "Day: " + day + "\n", "Time: " + time + "\n", \
+				"Members Excluded: " + (", ".join(excluded) if len(excluded) != 0 else "None"), "\nJobs Excluded: " + ", ".join(excluded_jobs)  + "\n\n"]
 
 	def createELF():
 		from schedule import Schedule
-		new_elf = Schedule(title, time_code)
+		new_elf = Schedule(title, time_code, event_type)
 		created_schedule = deepcopy(default_schedule)
 		slots_completed = []
 		people_assigned = []
@@ -92,6 +109,9 @@ def generate():
 		while len(created_schedule) != len(slots_completed):
 			while (slot in slots_completed):
 				slot = randint(0, len(created_schedule)-1)
+			if created_schedule[slot][0] in excluded_jobs or len(list(filter(lambda s: s != "BLANK", created_schedule[slot][1]))) == 0:
+				slots_completed.append(slot)
+				continue
 			slots_completed.append(slot)
 			shifts = created_schedule[slot][1]
 			index = 0
@@ -104,12 +124,12 @@ def generate():
 					continue
 				if index != 0 and shifts[index-1] != "BLANK" and shifts[index-1] != "NONE_AVAILABLE":
 					prev = list(filter(lambda person: person.getName() == shifts[index-1], people[:]))
-					if prev[0].getSchedule()[day][time_code + index]:
+					if prev[0].getSchedule()[day][time_code + index] and len(list(filter(lambda person: prev[0].getName() == person, created_schedule[slot][1]))) < 2:
 						created_schedule[slot][1][index] = prev[0].getName()
 						index += 1
 						continue
 				available_people = list(filter(lambda person: person.getSchedule()[day][time_code + index] \
-											   and person not in people_assigned \
+											   and person.getName() not in people_assigned \
 											   and person.getName() not in excluded, people[:]))
 				if len(available_people) == 0:
 					created_schedule[slot][1][index] = "NONE_AVAILABLE"
@@ -119,7 +139,32 @@ def generate():
 				available_people = list(filter(lambda person: person.getEventsAttended() == min_events_attended, available_people))
 				chosen_one = available_people[randint(0, len(available_people)-1)]
 				created_schedule[slot][1][index] = chosen_one.getName()
-				people_assigned.append(chosen_one)
+				people_assigned.append(chosen_one.getName())
+				index += 1
+		new_elf.setWrittenSchedule(created_schedule)
+		return new_elf
+
+	def AC3():
+		from schedule import Schedule
+		new_elf = Schedule(title, time_code, event_type)
+		created_schedule = deepcopy(default_schedule)
+		people_assigned = []
+		for slot in created_schedule:
+			if len(list(filter(lambda s: s != "BLANK", created_schedule[slot][1]))) == 0:
+				continue
+			index = 0
+			while shifts[index] == "BLANK":
+				index += 1
+			while index != len(shifts) and shifts[index] == "FILL_IN":
+				if time_code + index < 0 or time_code + index > 23:
+					return "AC3 terminated without finding a valid schedule."
+				available_people = list(filter(lambda person: person.getSchedule()[day][time_code + index] \
+												   and person.getName() not in people_assigned \
+												   and person.getName() not in excluded, people[:]))
+				if len(available_people) == 0:
+					return "AC3 terminated without finding a valid schedule."
+				chosen_one = available_people[randint(0, len(available_people)-1)]
+				people_assigned.append(chosen_one.getName())
 				index += 1
 		new_elf.setWrittenSchedule(created_schedule)
 		return new_elf
@@ -215,7 +260,8 @@ def generate():
 				text_out.append(str(key) + " = |" + stars * "*" + "\n")
 		if len(sample_elfs.keys()) != 0:
 			if int(stat.median(sample_elfs.keys())) in sample_elfs.keys() and int(stat.median(sample_elfs.keys())) == stat.median(sample_elfs.keys()):
-				elf.setWrittenSchedule(sample_elfs[int(stat.median(sample_elfs.keys()))][randint(0,len(sample_elfs[int(stat.median(sample_elfs.keys()))])-1)])
+				med_elfs = sample_elfs[int(stat.median(sample_elfs.keys()))]
+				elf.setWrittenSchedule(med_elfs[randint(0,len(med_elfs)-1)])
 				return elf
 			else:
 				median = stat.median(sample_elfs.keys())
@@ -224,11 +270,13 @@ def generate():
 					median_chosen = stat.median_low(sample_elfs.keys())
 				else:
 					median_chosen = stat.median_high(sample_elfs.keys())
-				elf.setWrittenSchedule(sample_elfs[median_chosen][randint(0,len(sample_elfs[median_chosen])-1)])
+				med_elfs = sample_elfs[median_chosen]
+				elf.setWrittenSchedule(med_elfs[randint(0,len(med_elfs)-1)])
 				return elf
 		else:
 			lowest_unoccupied = min(excluded_sample_elfs.keys())
-			elf.setWrittenSchedule(excluded_sample_elfs[lowest_unoccupied][randint(0,len(excluded_sample_elfs[lowest_unoccupied])-1)])
+			low_elfs = excluded_sample_elfs[lowest_unoccupied]
+			elf.setWrittenSchedule(low_elfs[randint(0,len(low_elfs)-1)])
 			return elf
 
 
@@ -249,6 +297,12 @@ def generate():
 		iter_input = input("\nHow many iterations should be run to find the optimal schedule? (defaults to 10000)\n>>> ")
 
 	elf = findOptimalELF(int(iter_input))
+
+	if event_type == "single":
+		elf.setWrittenSchedule(single_inverse(elf.getWrittenSchedule()))
+
+	if event_type == "multi":
+		elf.setWrittenSchedule(multiple_inverse(elf.getWrittenSchedule()))
 
 	def writeFile():
 		"""Creates the heading times for the schedule."""
@@ -290,9 +344,12 @@ def generate():
 			index = 0
 			name_found = "BLANK"
 			for shift in shifts:
-				if shift != "BLANK" and shift != "NONE_AVAILABLE":
+				if shift not in ["BLANK", "NONE_AVAILABLE", "FILL_IN"]:
 					name_found = shift
-					name_to_position[name_found] = slot[0]
+					if name_found not in name_to_position.keys():
+						name_to_position[name_found] = [slot[0]]
+					else:
+						name_to_position[name_found] += [slot[0]]
 					if name_found not in names_found.keys():
 						names_found[name_found] = [index]
 					else:
@@ -301,7 +358,11 @@ def generate():
 		name_keys = sorted(names_found.keys())
 		table = []
 		for name in name_keys:
-			position_name = name_to_position[name]
+			positions_temp = []
+			for p in name_to_position[name]:
+				if p not in positions_temp:
+					positions_temp.append(p)
+			position_name = " + ".join(positions_temp)
 			start_time = names_found[name][0] + time_code + mem_time_code
 			start_shift = ("12" if (int((start_time) / 2) % 12 == 0) else str(int((start_time) / 2) % 12)) + ":" \
 						+ ("00" if ((start_time) % 2 == 0) else "30") \

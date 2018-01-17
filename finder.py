@@ -44,11 +44,11 @@ def find():
 	"""Creates and prints the list of members available for the time slot."""
 	available_people = []
 	if time_code > -1 and time_code < 24:
-		available_people = list(filter(lambda person: person.getSchedule()[day][time_code], people[:]))
+		available_people = sorted([p.getName() for p in list(filter(lambda person: person.getSchedule()[day][time_code], people[:]))])
 	if len(available_people) == 0:
 		print("\nThere are no members available on " + day + " at " + time + ".")
 	else:
 		print("\nThe following members are available on " + day + " at " + time + ":")
 		for person in available_people:
-			print("* " + person.getName())
+			print("* " + person)
 	print()

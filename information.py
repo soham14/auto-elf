@@ -29,6 +29,6 @@ def info():
 										+ ("00" if ((mem_time_code + i) % 2 == 0) else "30") \
 										+ (" AM" if (mem_time_code + i) < 24 else " PM"))
 			if len(availabilities) == 0:
-				print("No availabilities for this day.")
+				print("-- " + day + ": " + "No availabilities for this day.\n")
 			else:
 				print("-- " + day + ": " + ", ".join(availabilities) + ".\n")

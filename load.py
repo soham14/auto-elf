@@ -16,7 +16,7 @@ def loadMeta():
 			info = []
 			info.append(str(row[0]))
 			info.append(str(row[1]))
-			info.append(int(row[2]))
+			info.append(float(row[2]))
 			people_meta.append(info)
 	return people_meta
 

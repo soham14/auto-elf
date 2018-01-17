@@ -3,61 +3,52 @@
 ## Event Information
 
 Title: Claude Shannon at the Berkeley Forum
-Day: Monday
+Event Type: single
+Day: Thursday
 Time: 5:00 PM
-Members Excluded: Alan Kay, Ada Lovelace
+Members Excluded: John Backus
+Jobs Excluded: 
 
 ## Sampling Information
 
 Schedule Sample Size: 10000
 
-3842 samples had inoccupiable shifts and were excluded.
+0 samples had inoccupiable shifts and were excluded.
 
-Statistics for number of members in 6158 non-excluded sample ELFs:
+Statistics for number of members in 10000 non-excluded sample ELFs:
 
-Minimum: 21
-Maximum: 28
-Median: 26.0
-Mean: 25.508606690483923
-Mode: 26
-Standard Deviation: 1.386320546984165
-Variance: 1.9218846589904746
+Minimum: 18
+Maximum: 20
+Median: 19.0
+Mean: 19.4388
+Mode: 20
+Standard Deviation: 0.602404223993249
+Variance: 0.3628908490849085
 
-21 = |
-22 = |
-23 = |***
-24 = |*********
-25 = |**************
-26 = |****************
-27 = |***********
-28 = |***
+18 = |*****
+19 = |********************************************
+20 = |*************************************************
 
 ## Assignments
 
- -- Alan Turing for Cage Transport at 6:00 PM - 7:00 PM.
- -- Anita Borg for Registration Usher at 4:30 PM - 5:30 PM.
- -- Annie Easley for Utility at 6:00 PM - 6:30 PM.
- -- Barbara Liskov for Tech Oversight/Set Up at 4:30 PM - 5:30 PM.
- -- Brian Kernighan for Cage Oversight at 3:30 PM - 4:00 PM.
- -- Daphne Koller for Photographer at 4:30 PM - 5:30 PM.
- -- Edgar Codd for Social Media at 5:00 PM - 6:00 PM.
- -- Edsger Dijkstra for Registration Check In at 4:30 PM - 5:30 PM.
- -- Grace Hopper for Tech Oversight/Set Up at 6:00 PM - 6:30 PM.
- -- James Gosling for Cage Transport at 3:30 PM - 4:00 PM.
- -- Jean Sammet for Cage Oversight at 6:00 PM - 6:30 PM.
- -- Jeannette Wing for Cage Transport at 3:30 PM - 4:00 PM.
- -- Jennifer Widom for Photographer at 5:30 PM - 6:00 PM.
- -- John Backus for Stage Set Up at 4:00 PM - 4:30 PM.
- -- John von Neumann for Stage Set Up at 4:00 PM - 5:00 PM.
- -- Larry Page for Stage Set Up at 4:30 PM - 5:00 PM.
- -- Marissa Mayer for Registration Set Up at 4:00 PM - 4:30 PM.
- -- Radia Perlman for Tech Oversight/Set Up at 4:00 PM - 4:30 PM.
- -- Rosalind Picard for Photographer at 6:00 PM - 6:30 PM.
- -- Sophie Wilson for Registration Check In at 4:30 PM - 5:30 PM.
- -- Stephen Cook for Cage Transport at 6:00 PM - 7:00 PM.
- -- Steve Wozniak for Tech Oversight/Set Up at 5:30 PM - 6:00 PM.
- -- Tim Berners-Lee for Utility at 5:00 PM - 6:00 PM.
- -- Wang Xiaoyun for Cage Oversight at 6:30 PM - 7:00 PM.
- -- Winifred Asprey for Utility at 4:30 PM - 5:00 PM.
+ -- Ada Lovelace for Photographer at 5:30 PM - 6:00 PM.
+ -- Alan Perlis for Late Registration Check In + Cage Transport at 5:30 PM - 6:30 PM.
+ -- Anita Borg for Photographer at 6:00 PM - 6:30 PM.
+ -- Annie Easley for Registration Usher + Late Registration Check In at 4:30 PM - 5:30 PM.
+ -- Barbara Liskov for Utility at 5:00 PM - 6:00 PM.
+ -- Betty Holberton for Utility at 4:30 PM - 5:00 PM.
+ -- Dennis Ritchie for Cage Transport + Registration Set Up at 3:30 PM - 4:30 PM.
+ -- Edsger Dijkstra for Tech Oversight/Set Up at 6:00 PM - 6:30 PM.
+ -- Frances Allen for Utility at 6:00 PM - 6:30 PM.
+ -- Jeannette Wing for Photographer at 4:30 PM - 5:30 PM.
+ -- Karen Jones for Registration Check In at 4:30 PM - 5:00 PM.
+ -- Larry Page for Cage Transport at 6:00 PM - 6:30 PM.
+ -- Leslie Lamport for Cage Oversight + Stage Set Up at 3:30 PM - 4:30 PM.
+ -- Sergey Brin for Tech Oversight/Set Up at 4:00 PM - 5:00 PM.
+ -- Sophie Wilson for Cage Transport + Stage Set Up at 3:30 PM - 4:30 PM.
+ -- Tim Berners-Lee for Cage Oversight at 6:00 PM - 6:30 PM.
+ -- Wendy Hall for Registration Check In at 4:30 PM - 5:00 PM.
+ -- Winifred Asprey for Social Media at 5:00 PM - 6:00 PM.
+ -- Yukihiro Matsumoto for Tech Oversight/Set Up at 5:00 PM - 6:00 PM.
 
 Schedule generated successfully. The ELF's location is `ELFs/Claude Shannon at the Berkeley Forum/ELF.csv`.

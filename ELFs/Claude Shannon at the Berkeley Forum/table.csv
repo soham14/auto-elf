@@ -1,26 +1,20 @@
 Name,Position,Shift Start Time,Shift End Time,Email
-Alan Turing,Cage Transport,6:00 PM,7:00 PM,aturing@berkeley.edu
-Anita Borg,Registration Usher,4:30 PM,5:30 PM,aborg@berkeley.edu
-Annie Easley,Utility,6:00 PM,6:30 PM,aeasley@berkeley.edu
-Barbara Liskov,Tech Oversight/Set Up,4:30 PM,5:30 PM,bliskov@berkeley.edu
-Brian Kernighan,Cage Oversight,3:30 PM,4:00 PM,bkernighan@berkeley.edu
-Daphne Koller,Photographer,4:30 PM,5:30 PM,dkoller@berkeley.edu
-Edgar Codd,Social Media,5:00 PM,6:00 PM,ecodd@berkeley.edu
-Edsger Dijkstra,Registration Check In,4:30 PM,5:30 PM,edijkstra@berkeley.edu
-Grace Hopper,Tech Oversight/Set Up,6:00 PM,6:30 PM,ghopper@berkeley.edu
-James Gosling,Cage Transport,3:30 PM,4:00 PM,jgosling@berkeley.edu
-Jean Sammet,Cage Oversight,6:00 PM,6:30 PM,jsammet@berkeley.edu
-Jeannette Wing,Cage Transport,3:30 PM,4:00 PM,jwing@berkeley.edu
-Jennifer Widom,Photographer,5:30 PM,6:00 PM,jwidom@berkeley.edu
-John Backus,Stage Set Up,4:00 PM,4:30 PM,jbackus@berkeley.edu
-John von Neumann,Stage Set Up,4:00 PM,5:00 PM,jneumann@berkeley.edu
-Larry Page,Stage Set Up,4:30 PM,5:00 PM,lpage@berkeley.edu
-Marissa Mayer,Registration Set Up,4:00 PM,4:30 PM,mmayer@berkeley.edu
-Radia Perlman,Tech Oversight/Set Up,4:00 PM,4:30 PM,rperlman@berkeley.edu
-Rosalind Picard,Photographer,6:00 PM,6:30 PM,rpicard@berkeley.edu
-Sophie Wilson,Registration Check In,4:30 PM,5:30 PM,swilson@berkeley.edu
-Stephen Cook,Cage Transport,6:00 PM,7:00 PM,scook@berkeley.edu
-Steve Wozniak,Tech Oversight/Set Up,5:30 PM,6:00 PM,swozniak@berkeley.edu
-Tim Berners-Lee,Utility,5:00 PM,6:00 PM,tberners-lee@berkeley.edu
-Wang Xiaoyun,Cage Oversight,6:30 PM,7:00 PM,wxiaoyun@berkeley.edu
-Winifred Asprey,Utility,4:30 PM,5:00 PM,wasprey@berkeley.edu
+Ada Lovelace,Photographer,5:30 PM,6:00 PM,alovelace@berkeley.edu
+Alan Perlis,Late Registration Check In + Cage Transport,5:30 PM,6:30 PM,aperlis@berkeley.edu
+Anita Borg,Photographer,6:00 PM,6:30 PM,aborg@berkeley.edu
+Annie Easley,Registration Usher + Late Registration Check In,4:30 PM,5:30 PM,aeasley@berkeley.edu
+Barbara Liskov,Utility,5:00 PM,6:00 PM,bliskov@berkeley.edu
+Betty Holberton,Utility,4:30 PM,5:00 PM,bholberton@berkeley.edu
+Dennis Ritchie,Cage Transport + Registration Set Up,3:30 PM,4:30 PM,dritchie@berkeley.edu
+Edsger Dijkstra,Tech Oversight/Set Up,6:00 PM,6:30 PM,edijkstra@berkeley.edu
+Frances Allen,Utility,6:00 PM,6:30 PM,fallen@berkeley.edu
+Jeannette Wing,Photographer,4:30 PM,5:30 PM,jwing@berkeley.edu
+Karen Jones,Registration Check In,4:30 PM,5:00 PM,kjones@berkeley.edu
+Larry Page,Cage Transport,6:00 PM,6:30 PM,lpage@berkeley.edu
+Leslie Lamport,Cage Oversight + Stage Set Up,3:30 PM,4:30 PM,llamport@berkeley.edu
+Sergey Brin,Tech Oversight/Set Up,4:00 PM,5:00 PM,sbrin@berkeley.edu
+Sophie Wilson,Cage Transport + Stage Set Up,3:30 PM,4:30 PM,swilson@berkeley.edu
+Tim Berners-Lee,Cage Oversight,6:00 PM,6:30 PM,tberners-lee@berkeley.edu
+Wendy Hall,Registration Check In,4:30 PM,5:00 PM,whall@berkeley.edu
+Winifred Asprey,Social Media,5:00 PM,6:00 PM,wasprey@berkeley.edu
+Yukihiro Matsumoto,Tech Oversight/Set Up,5:00 PM,6:00 PM,ymatsumoto@berkeley.edu

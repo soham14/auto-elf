@@ -3,64 +3,56 @@
 ## Event Information
 
 Title: John McCarthy at the Berkeley Forum
-Day: Wednesday
+Event Type: multi
+Day: Tuesday
 Time: 6:30 PM
 Members Excluded: None
+Jobs Excluded: 
 
 ## Sampling Information
 
 Schedule Sample Size: 10000
 
-1767 samples had inoccupiable shifts and were excluded.
+0 samples had inoccupiable shifts and were excluded.
 
-Statistics for number of members in 8233 non-excluded sample ELFs:
+Statistics for number of members in 10000 non-excluded sample ELFs:
 
 Minimum: 20
-Maximum: 30
-Median: 27
-Mean: 27.074456455726953
-Mode: 28
-Standard Deviation: 1.6366103579149562
-Variance: 2.678493463634521
+Maximum: 23
+Median: 21.0
+Mean: 20.6942
+Mode: 21
+Standard Deviation: 0.6160554459066514
+Variance: 0.3795243124312431
 
-20 = |
-21 = |
-22 = |
-23 = |*
-24 = |***
-25 = |********
-26 = |**************
-27 = |******************
-28 = |******************
-29 = |************
-30 = |****
+20 = |**************************************
+21 = |****************************************************
+22 = |********
+23 = |
 
 ## Assignments
 
- -- Alan Kay for Cage Transport at 5:00 PM - 5:30 PM.
- -- Alan Turing for Registration Usher at 6:00 PM - 6:30 PM.
- -- Anita Borg for Registration Check In at 6:30 PM - 7:00 PM.
- -- Annie Easley for Stage Set Up at 6:00 PM - 6:30 PM.
- -- Barbara Liskov for Stage Set Up at 5:30 PM - 6:30 PM.
- -- Brian Kernighan for Registration Check In at 6:30 PM - 7:00 PM.
- -- Daphne Koller for Registration Check In at 6:00 PM - 6:30 PM.
- -- Edgar Codd for Utility at 7:30 PM - 8:00 PM.
- -- Edsger Dijkstra for Registration Check In at 6:00 PM - 6:30 PM.
- -- Grace Hopper for Cage Transport at 7:30 PM - 8:30 PM.
- -- James Gosling for Stage Set Up at 5:30 PM - 6:00 PM.
- -- Jean Sammet for Cage Oversight at 8:00 PM - 8:30 PM.
- -- Jeannette Wing for Tech Oversight/Set Up at 5:30 PM - 6:00 PM.
- -- Jennifer Widom for Cage Oversight at 7:30 PM - 8:00 PM.
- -- John Backus for Utility at 6:00 PM - 7:30 PM.
- -- Larry Page for Social Media at 6:30 PM - 7:00 PM.
- -- Marissa Mayer for Photographer at 6:00 PM - 8:00 PM.
- -- Radia Perlman for Cage Transport at 5:00 PM - 5:30 PM.
- -- Rosalind Picard for Cage Transport at 7:30 PM - 8:00 PM.
- -- Shafi Goldwasser for Cage Transport at 8:00 PM - 8:30 PM.
- -- Sophie Wilson for Cage Oversight at 5:00 PM - 5:30 PM.
- -- Stephen Cook for Registration Usher at 6:30 PM - 7:00 PM.
- -- Steve Wozniak for Tech Oversight/Set Up at 6:00 PM - 8:00 PM.
- -- Tim Berners-Lee for Registration Set Up at 5:30 PM - 6:00 PM.
- -- Winifred Asprey for Social Media at 7:00 PM - 7:30 PM.
+ -- Ada Lovelace for Late Registration Check In at 7:00 PM - 8:00 PM.
+ -- Alan Perlis for Cage Oversight + Stage Set Up at 5:00 PM - 6:00 PM.
+ -- Alonzo Church for Tech Oversight/Set Up at 6:30 PM - 7:30 PM.
+ -- Anita Borg for Cage Transport at 8:00 PM - 8:30 PM.
+ -- Annie Easley for Cage Transport + Stage Set Up at 5:00 PM - 6:00 PM.
+ -- Bjarne Stroustrup for Cage Transport at 5:00 PM - 5:30 PM.
+ -- Brian Kernighan for Tech Oversight/Set Up at 8:00 PM - 8:30 PM.
+ -- Dennis Ritchie for Photographer at 8:00 PM - 8:30 PM.
+ -- Edsger Dijkstra for Photographer at 7:00 PM - 8:00 PM.
+ -- Frances Allen for Utility at 6:00 PM - 7:00 PM.
+ -- Grace Hopper for Social Media at 6:30 PM - 7:30 PM.
+ -- Jeannette Wing for Photographer at 6:00 PM - 7:00 PM.
+ -- Jennifer Widom for Utility at 7:00 PM - 8:00 PM.
+ -- Karen Jones for Tech Oversight/Set Up at 7:30 PM - 8:00 PM.
+ -- Larry Page for Utility at 8:00 PM - 8:30 PM.
+ -- Leslie Lamport for Cage Oversight at 8:00 PM - 8:30 PM.
+ -- Sergey Brin for Social Media + Cage Transport at 7:30 PM - 8:30 PM.
+ -- Shafi Goldwasser for Registration Check In at 6:00 PM - 6:30 PM.
+ -- Stephen Cook for Registration Set Up + Registration Usher at 5:30 PM - 6:30 PM.
+ -- Susan Landau for Tech Oversight/Set Up at 5:30 PM - 6:30 PM.
+ -- Tim Berners-Lee for Late Registration Check In at 6:30 PM - 7:00 PM.
+ -- Vinod Khosla for Registration Check In at 6:00 PM - 6:30 PM.
 
 Schedule generated successfully. The ELF's location is `ELFs/John McCarthy at the Berkeley Forum/ELF.csv`.
