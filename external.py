@@ -106,10 +106,6 @@ def invite():
 
   room_number = input("\nWhat is the room number? (format: 100, 350B, etc.)\n>>> ")
 
-  while room_number == "":
-    print("\nPlease enter the room number.\n")
-    room_number = input("What is the room number? (format: 100, 350B, etc.)\n>>> ")
-
   print("\nThe requested folder and table.csv file were found. Please review the names, times, and shifts for the request.\n")
 
   invitations = []
@@ -153,7 +149,8 @@ def invite():
       "calendarID": "primary",
       "attendees": [{"email": invite[4], "responseStatus": "needsAction"}],
       "location": venue_name + ", Berkeley, CA",
-      "summary": "[TBF] " + invite[1] + " -- " + room_number + " " + venue_name,
+      "summary": "[TBF] " + invite[1] + " -- " + ((room_number + " " + venue_name) if room_number
+        else venue_name),
       "start": {
         "dateTime": str(datetime_start),
         "timeZone": "PST8PDT"
