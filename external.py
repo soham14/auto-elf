@@ -144,10 +144,10 @@ def invite():
     time_end = invite[3]
     datetime_start = datetime.strptime(date + " " + time_start, "%m-%d-%Y %I:%M %p")
     start_temp = str(datetime_start).split(" ")
-    datetime_start = start_temp[0] + "T" + start_temp[1] + "-08:00"
+    datetime_start = start_temp[0] + "T" + start_temp[1]
     datetime_end = datetime.strptime(date + " " + time_end, "%m-%d-%Y %I:%M %p")
     end_temp = str(datetime_end).split(" ")
-    datetime_end = end_temp[0] + "T" + end_temp[1] + "-08:00"
+    datetime_end = end_temp[0] + "T" + end_temp[1]
     
     event = {
       "calendarID": "primary",
@@ -156,11 +156,11 @@ def invite():
       "summary": "[TBF] " + invite[1] + " -- " + room_number + " " + venue_name,
       "start": {
         "dateTime": str(datetime_start),
-        "timeZone": "America/Los_Angeles"
+        "timeZone": "PST8PDT"
       },
       "end": {
         "dateTime": str(datetime_end),
-        "timeZone": "America/Los_Angeles"
+        "timeZone": "PST8PDT"
       },
       "reminders": {
         "useDefault": False,
